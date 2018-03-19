@@ -1,0 +1,40 @@
+<html>
+  <body>
+    <p id="p1">
+      This is a test paragraph for lanternfish wiki api by mori
+    </p>
+  </body>
+
+  <script type="text/javascript">
+  	var text = document.getElementById("p1")
+	var text_ori = text.innerHTML
+	function selected(){
+					var sel = window.getSelection()
+					var sel_str = sel.toString()
+					var index = sel.anchorOffset
+					text.innerHTML = text.innerHTML.substring(0, index) + "<span id='wiki'>" + text.innerHTML.substring(index, index + sel_str.length) + "<span class='wiki-tooltip'>" + sel_str + "</span>" + "</span>" + text.innerHTML.substring(index + sel_str.length)
+					console.log(text.innerHTML)
+				}
+	      
+	      function unselected() {
+	      if (document.getElementById("wiki")) {
+	      	text.innerHTML = text_ori
+	        console.log(text.innerHTML)
+	      }
+	      	
+	      }
+
+			function showMouseOver() {
+				if (window.getSelection().toString() !== "") {
+					window.setTimeout(selected, 1000)
+				}
+			}
+      
+      				document.getElementById("p1").onmouseenter = showMouseOver;
+              document.getElementById("p1").onmouseleave = unselected
+              
+              
+  	
+  </script>
+</html>
+
